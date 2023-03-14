@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+// Function prototypes
+void displayMenu();
+void takeOrder(int menuSelection, int *totalSales);
+void displaySales(int totalSales);
+
+int main()
+{
+    int menuSelection;
+    int totalSales = 0;
+
+    displayMenu();
+
+    do {
+        printf("Enter your choice (1-4) or 0 to quit: ");
+        scanf("%d", &menuSelection);
+
+        if (menuSelection >= 1 && menuSelection <= 4) {
+            takeOrder(menuSelection, &totalSales);
+        }
+    } while (menuSelection != 0);
+
+    displaySales(totalSales);
+
+    return 0;
+}
+
+void displayMenu()
+{
+    printf("Welcome to Cafe Management!\n\n");
+    printf("Menu:\n");
+    printf("1. Coffee - $2.50\n");
+    printf("2. Tea - $1.50\n");
+    printf("3. Sandwich - $4.00\n");
+    printf("4. Cake - $3.00\n");
+}
+
+void takeOrder(int menuSelection, int *totalSales)
+{
+    switch (menuSelection) {
+        case 1:
+            *totalSales += 250;
+            printf("You ordered a Coffee for $2.50.\n");
+            break;
+        case 2:
+            *totalSales += 150;
+            printf("You ordered a Tea for $1.50.\n");
+            break;
+        case 3:
+            *totalSales += 400;
+            printf("You ordered a Sandwich for $4.00.\n");
+            break;
+        case 4:
+            *totalSales += 300;
+            printf("You ordered a Cake for $3.00.\n");
+            break;
+    }
+}
+
+void displaySales(int totalSales)
+{
+    printf("\nTotal Sales: $%.2f\n", (float) totalSales / 100);
+}
